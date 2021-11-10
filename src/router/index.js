@@ -4,6 +4,13 @@ import Home from '../views/Home.vue'
 
 Vue.use(VueRouter)
 
+// import Home from '../views/Home.vue'
+// {
+//   path: '/',            path是路由参数 当路径匹配到当前路由参数时,就会跳转component所对应的组件
+//   name: 'Home',
+//   component: Home   component两种写法  一种是先导入import Home from '../views/Home.vue' 然后component: Home   另一种是直接用箭头函数 component: () => import('../views/Home.vue')
+// }
+
 const routes = [
   {
     path: '/',
@@ -13,16 +20,13 @@ const routes = [
   {
     path: '/about',
     name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+    component: () => import('../views/About.vue')
   }
 ]
 
 const router = new VueRouter({
-  mode: 'history',
-  base: process.env.BASE_URL,
+  mode: 'history', // history模式访问路径不带#  hash模式访问路径中带#
+  base: process.env.BASE_URL, // 配置单页应用的基路径. 默认为'/'   base: '/app/' 那么所有的请求都会在url之后加上/app/
   routes
 })
 
