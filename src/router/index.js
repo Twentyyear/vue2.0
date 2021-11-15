@@ -23,7 +23,20 @@ const routes = [
       {
         path: '/about',
         name: 'About',
-        component: () => import('../views/About.vue')
+        component: () => import('../views/About.vue'),
+        redirect: 'about/zhangsan',
+        children: [
+          {
+            path: 'zhangsan',
+            name: 'zhangsan',
+            component: () => import('../views/zhangsan.vue')
+          },
+          {
+            path: 'lisi',
+            name: 'lisi',
+            component: () => import('../views/lisi.vue')
+          }
+        ]
       },
       {
         path: '/HelloWorld',
@@ -31,6 +44,15 @@ const routes = [
         component: () => import('../components/HelloWorld.vue')
       }
     ]
+  },
+  {
+    // 会匹配以 `/user-` 开头的任意路径
+    path: '/user-*'
+  },
+  {
+    // 会匹配所有路径
+    path: '*',
+    component: () => import('@/views/404')
   }
 ]
 
