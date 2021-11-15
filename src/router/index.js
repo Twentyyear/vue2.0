@@ -9,18 +9,28 @@ Vue.use(VueRouter)
 //   path: '/',            path是路由参数 当路径匹配到当前路由参数时,就会跳转component所对应的组件
 //   name: 'Home',
 //   component: Home   component两种写法  一种是先导入import Home from '../views/Home.vue' 然后component: Home   另一种是直接用箭头函数 component: () => import('../views/Home.vue')
+//   redirect: 'HelloWorld' 路由重定向  如果你进入的是home页面我就让你跳转到HelloWorld页面
+//   children:[]       子路由
 // }
 
 const routes = [
   {
     path: '/',
     name: 'Home',
-    component: Home
-  },
-  {
-    path: '/about',
-    name: 'About',
-    component: () => import('../views/About.vue')
+    component: Home,
+    redirect: 'HelloWorld',
+    children: [
+      {
+        path: '/about',
+        name: 'About',
+        component: () => import('../views/About.vue')
+      },
+      {
+        path: '/HelloWorld',
+        name: 'HelloWorld',
+        component: () => import('../components/HelloWorld.vue')
+      }
+    ]
   }
 ]
 
